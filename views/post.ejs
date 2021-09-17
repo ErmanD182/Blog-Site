@@ -1,0 +1,19 @@
+<%- include("partials/header") -%>
+
+
+<h1><%= postTitle %></h1>
+<div class="post-content">
+  <p><%= postContent %></p>
+  <form class="delete-btn" action="/delete" method="post">
+    <button type="submit" class="btn btn-outline-danger">Delete</button>
+  </form>
+</div>
+
+<div class="div-border"></div>
+<form class="back-btn" action="/back" method="post">
+  <button type="submit" class="btn btn-outline-secondary">Back</button>
+</form>
+
+
+
+<%- include("partials/footer") -%>

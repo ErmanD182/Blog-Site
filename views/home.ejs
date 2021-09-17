@@ -1,0 +1,31 @@
+<%- include("partials/header") -%>
+
+    <h1>Home</h1>
+    <div class="div-border"></div>
+    <p><%= homeStartingContent %></p>
+
+    <h1>Posts</h1>
+    <div class="div-border"></div>
+
+  <%  posts.forEach(post => { %>
+    <div class="post-content">
+      <h2><a class="post-title" href="/posts/<%=post._id%>"><%= post.title %></a></h2>
+      <p>
+        <!--Post content short version-->
+        <%= post.contentShort %>
+        <!-- Read more link -->
+        <a href="/posts/<%= post._id %>">Read More</a>
+      </p>
+    </div>
+
+
+<%  }); %>
+
+<div class="position-relative">
+  <form class="" action="/btn" method="post">
+    <button class="btn btn-secondary compose-btn fixed-bottom" type="submit" >New Post</button>
+  </form>
+</div>
+
+
+<%- include("partials/footer") -%>
