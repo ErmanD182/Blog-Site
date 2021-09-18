@@ -52,6 +52,10 @@ app.get("/compose", function(req,res){
   res.render("compose");
 });
 
+app.get("/login", function(req,res){
+  res.render("login");
+});
+
 app.get("/posts/:id", function(req,res){
   const requestId = req.params.id;
 

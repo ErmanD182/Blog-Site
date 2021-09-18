@@ -81,6 +81,24 @@ html {
   margin-bottom: 2rem;
 }
 
+.login-btn{
+  margin: 1rem 0;
+}
+
+.login-hr{
+  display: inline-block;
+  width: 45%;
+  border-top: 1px solid #ced4da;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.login-or-group{
+  margin: auto;
+  text-align: center;
+  padding: 1rem;
+}
+
 .fixed-bottom{
   left: auto;
 }
