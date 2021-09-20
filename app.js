@@ -24,10 +24,20 @@ mongoose.connect("mongodb://localhost:27017/blogDB", {useNewUrlParser: true, use
 const postSchema = new mongoose.Schema({
   title: String,
   content: String,
-  contentShort: String
+  contentShort: String,
+  date: String
 });
 
 const Post = mongoose.model("Post", postSchema);
+
+const userSchema = new mongoose.Schema({
+  username: String,
+  email: String,
+  password: String,
+  posts: [postSchema]
+});
+
+const User = mongoose.model("User", userSchema);
 
 let currentPostId = "";
 
@@ -56,13 +66,17 @@ app.get("/login", function(req,res){
   res.render("login");
 });
 
+app.get("/signup", function(req,res){
+  res.render("signup");
+});
+
 app.get("/posts/:id", function(req,res){
   const requestId = req.params.id;
 
   Post.findOne({_id: requestId}, function(err, foundPost){
     if(!err){
       currentPostId = requestId;
-      res.render("post", {postTitle: foundPost.title, postContent: foundPost.content});
+      res.render("post", {postTitle: foundPost.title, postContent: foundPost.content, postDate: foundPost.date});
     }
   });
 
@@ -73,12 +87,15 @@ app.post("/back", function(req,res){
 });
 
 app.post("/compose", function(req,res){
+  const today = new Date();
+  const todayFormatted = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate() + " " + today.getHours() + ":" + today.getMinutes();
 
   const newPost = new Post({
     title: req.body.titleInput,
     content: req.body.textAreaInput,
     contentShort: _.truncate(req.body.textAreaInput,{
-      length: 100})
+      length: 100}),
+      date: todayFormatted
   });
 
   newPost.save(function(err){

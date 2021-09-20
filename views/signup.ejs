@@ -1,13 +1,19 @@
 <%- include("partials/header") -%>
 
-<h1>Login</h1>
+
+<h1>Sign Up</h1>
+
 
 <div class="row">
   <div class="col-sm-8">
     <div class="card">
       <div class="card-body">
-        <!--Make POST request to login route -->
-        <form action="/login" method="post">
+        <!--Make POST request to signup route -->
+        <form action="/signup" method="post">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" class="form-control" required>
+          </div>
           <div class="form-group">
             <label for="email">Email</label>
             <input type="email" name="email" class="form-control" required>
@@ -16,18 +22,13 @@
             <label for="password">Password</label>
             <input type="password" name="password" class="form-control" required>
           </div>
-          <button type="submit" name="login-button" class="btn btn-secondary login-btn">Login</button>
+          <div class="form-group">
+            <label for="password">Repeat Password</label>
+            <input type="password" name="password" class="form-control" required>
+          </div>
+          <button type="submit" name="signup-button" class="btn btn-secondary login-btn">Sign Up</button>
         </form>
 
-          <div class="login-or-group">
-            <div class="login-hr"></div>
-            <span>OR</span>
-            <div class="login-hr"></div>
-          </div>
-
-          <div class="login-or-group">
-            <p><a href="/signup">Create an account</a> for free!</p>
-          </div>
 
       </div>
     </div>
@@ -39,7 +40,7 @@
         <!--Authenticate with Google account -->
         <a class="btn col-12 btn-social btn-google" href="/auth/google" role="button">
           <i class="fab fa-google"></i>
-          Sign In with Google
+          Sign Up with Google
         </a>
       </div>
     </div>
@@ -54,4 +55,6 @@
 
 
 
-<%- include("partials/footer") -%>
+
+
+<%- include("partials/footer")-%>
