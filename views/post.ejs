@@ -1,10 +1,11 @@
-<%- include("partials/header") -%>
+<%- include("partials/headerLoggedIn") -%>
 
 
 <h1><%= postTitle %></h1>
 <div class="post-content">
   <p><%= postContent %></p>
-  <p class="post-date">Posted: <%=postDate%></p>
+  <p class="username" >By: <b><%= userName %> </b></p>
+  <p class="post-date">Posted on: <%=postDate%></p>
   <form class="delete-btn" action="/delete" method="post">
     <button type="submit" class="btn btn-outline-danger">Delete</button>
   </form>

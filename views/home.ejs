@@ -1,4 +1,4 @@
-<%- include("partials/header") -%>
+<%- include("partials/headerLoggedIn") -%>
 
     <h1>Home</h1>
     <div class="div-border"></div>
@@ -16,6 +16,7 @@
         <!-- Read more link -->
         <a href="/posts/<%= post._id %>">Read More</a>
       </p>
+      <p class="username" >By: <b><%= post.user %> </b></p>
       <p class="post-date">Posted: <%=post.date%></p>
     </div>
 
@@ -24,7 +25,7 @@
 
 <div class="position-relative">
   <form class="" action="/btn" method="post">
-    <button class="btn btn-secondary compose-btn fixed-bottom" type="submit" >New Post</button>
+    <button id="pos-btn" class="btn btn-secondary compose-btn fixed-bottom" type="submit" >New Post</button>
   </form>
 </div>
 
