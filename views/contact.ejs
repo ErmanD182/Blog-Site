@@ -1,6 +1,13 @@
-<%- include("partials/header") -%>
+<% if(loggedIn) {%>
+  <%- include("partials/headerLoggedIn") -%>
+<%} else{ %>
+  <%- include("partials/header") -%>
+<%}%>
+
     <h1>Contact</h1>
-    <p><%= contactContent %></p>
+    <p>Developed by: Erman Dinsel</p>
+    <p>Contact information available on my personal website located at: <a target="_blank" href="https://ermand182.github.io/">ermand182.github.io</a> </p>
+
 
 
 <%- include("partials/footer") -%>

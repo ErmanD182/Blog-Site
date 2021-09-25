@@ -1,0 +1,25 @@
+<%- include("partials/headerLoggedIn") -%>
+
+<h1>My Posts</h1>
+
+<div class="div-border"></div>
+
+<%  posts.forEach(post => { %>
+<div class="post-content">
+  <h2><a class="post-title" href="/posts/<%=post._id%>"><%= post.title %></a></h2>
+  <p>
+    <!--Post content short version-->
+    <%= post.contentShort %>
+    <!-- Read more link -->
+    <a href="/posts/<%= post._id %>">Read More</a>
+  </p>
+  <p class="username" >By: <b><%= post.user %> </b></p>
+  <p class="post-date">Posted: <%=post.date%></p>
+</div>
+
+<%  }); %>
+
+
+
+
+<%- include("partials/footer") -%>

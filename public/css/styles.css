@@ -3,6 +3,22 @@ html {
   position: relative;
 }
 
+textarea{
+  resize: none;
+}
+
+a{
+  color: #76DBD1;
+}
+
+a:hover{
+  color: #D1EECC;
+}
+
+.home-starting-content{
+  font-size: 20px;
+}
+
 .post-date{
   color: #8F8F8F;
   font-size: 12px;
@@ -123,12 +139,4 @@ html {
 .username{
   color: #8F8F8F;
   font-size: 14px;
-}
-
-a{
-  color: #76DBD1;
-}
-
-a:hover{
-  color: #D1EECC;
 }

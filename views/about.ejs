@@ -1,6 +1,17 @@
-<%- include("partials/header") -%>
+<% if(loggedIn) {%>
+  <%- include("partials/headerLoggedIn") -%>
+<%} else{ %>
+  <%- include("partials/header") -%>
+<%}%>
+
     <h1>About</h1>
-    <p><%= aboutContent %></p>
+    <p>This is a concept site for a blog style website made for fun and practice.
+       In order to view the posts on the home page, users must be logged in first.
+       First time users can register an account on the register page, after which they can post their own content.
+        Each post displays the post content, the username of who posted it, and the date and time the post was published.
+         Users can choose to delete their own posts if they wish to.</p>
+    <p>This site was developed using Nodejs, EJS, CSS, and MongoDB.
+     Created by Erman Dinsel</p>
 
 
 <%- include("partials/footer") -%>
