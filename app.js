@@ -181,7 +181,6 @@ app.post("/btn", function(req,res){
 });
 
 
-//TODO: NEED TO DELETE POSTS FROM USER's POSTS
 app.post("/delete", function(req,res){
   Post.findByIdAndRemove(currentPostId, function(err){
     if(!err){
@@ -202,19 +201,29 @@ app.post("/delete", function(req,res){
 });
 
 
-app.post("/signup", function(req,res){
+app.post("/signup", async function(req,res){
+  const sameUsername = await getSameUserName(req.body.name);
+  //console.log("sameusername: " + sameUsername);
+  const sameEmail = await getSameEmail(req.body.username);
+  //console.log("same email: " + sameEmail);
+  if(sameUsername === false && sameEmail === false){
+    User.register({username: req.body.username, name: req.body.name}, req.body.password, function(err, user){
+      if (err){
+        console.log(err);
+        res.redirect("/signup");
+      }
+      else{
+        passport.authenticate("local")(req, res, function(){
+          res.redirect("/");
+        });
+      }
+    });
+  }
+  else{
+    res.redirect("/signup");
+  }
 
-  User.register({username: req.body.username, name: req.body.name}, req.body.password, function(err, user){
-    if (err){
-      console.log(err);
-      res.redirect("/signup");
-    }
-    else{
-      passport.authenticate("local")(req, res, function(){
-        res.redirect("/");
-      });
-    }
-  });
+
 
 
 });
@@ -239,6 +248,39 @@ app.post("/login", function(req,res){
   });
 
 });
+
+
+async function getSameUserName(username){
+  let foundSameUser = true;
+  await User.findOne({name: username}, function(err, foundUser){
+  //  console.log("Finding username...");
+    if(!err){
+      if(foundUser === null){
+        foundSameUser = false;
+      }
+    }
+    else{
+      console.log(err);
+    }
+  });
+return foundSameUser;
+}
+
+async function getSameEmail(email){
+  let foundSameEmail = true;
+  await User.findOne({username: email}, function(err, foundUser){
+  //  console.log("Finding email...");
+    if(!err){
+      if(foundUser === null){
+        foundSameEmail = false;
+      }
+    }
+    else{
+      console.log(err);
+    }
+  });
+return foundSameEmail;
+}
 
 
 app.listen(3000, function() {
