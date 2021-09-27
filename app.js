@@ -7,12 +7,15 @@ const _ = require('lodash'); //using for truncate (shorter version)
 const session = require("express-session");
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
+const favicon = require("serve-favicon");
+const path = require('path');
 
 const app = express();
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 app.use(session({
   secret: process.env.SECRET,
@@ -23,7 +26,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect("mongodb://localhost:27017/blogDB", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
+mongoose.connect(process.env.DB, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
+//local mongodb database
+//mongoose.connect("mongodb://localhost:27017/blogDB", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 mongoose.set("useCreateIndex", true);
 
 const postSchema = new mongoose.Schema({
@@ -186,7 +191,7 @@ app.post("/delete", function(req,res){
     if(!err){
       User.findByIdAndUpdate(
         {_id: req.user._id},
-        {$pull: {posts: { _mcid: currentPostId }}}, function(err){
+        {$pull: {posts: { _id: currentPostId }}}, function(err){
         if(!err){
           res.redirect("/");
         }
@@ -283,6 +288,6 @@ return foundSameEmail;
 }
 
 
-app.listen(3000, function() {
-  console.log("Server started on port 3000");
+app.listen(process.env.PORT || 3000, function() {
+  console.log("Server has started");
 });
