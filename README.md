@@ -4,7 +4,7 @@
 
 <hr>
 
-<p>To use this application, the user must first login or create an account. Feel free to use a made-up email to register an account.</p>
+<p>To use this application, the user must first login or create an account. Feel free to use a made-up email to register an account. If you wish to try out the application without making an account, login with the following credentials --> Email: test123@test.com  Password: test123</p>
 <img src="public/images/loginScreen.png">
 
 <hr>
